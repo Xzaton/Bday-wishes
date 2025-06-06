@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Pari ji!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 142vh;
+            background-color: #ffe6ee; /* Light pink background color */
+        }
+
+        h1 {
+            font-size: 60px; /* Increase the font size */
+            margin-bottom: 100px; /* Increase the bottom margin for better spacing */
+        }
+
+        #audio-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        #audio-controls img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        #audio-controls span {
+            margin-right: 10px;
+        }
+
+        #audio-controls button {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+
+        #audio-controls button:hover {
+            background-color: #ddd;
+        }
+
+        #audio-controls button:active {
+            transform: translateY(1px);
+        }
+
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .video-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .video-wrapper {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday Pari ji!</h1>
+    
+    <div id="audio-controls">
+        <img src="music_icon.png" alt="Music Icon">
+        <span>Birthday Billi</span>
+        <button id="rewindButton">&#8634;</button>
+        <button id="playPauseButton">▶️</button>
+        <button id="forwardButton">&#8635;</button>
+        <span id="songLine"></span>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <h2>Special birthday video 1</h2>
+            <video width="640" height="360" controls>
+                <source src="bday-girl-video.mp4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="video-wrapper">
+            <h2>Special birthday video 2</h2>
+            <video width="640" height="360" controls>
+                <source src="itsurbirthday.mp4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.createElement('audio');
+        audio.src = 'happy-birthday-kitty.mp3.mp3';
+        audio.controls = false;
+        audio.autoplay = true;
+
+        const playPauseButton = document.getElementById('playPauseButton');
+        const rewindButton = document.getElementById('rewindButton');
+        const forwardButton = document.getElementById('forwardButton');
+        const songLine = document.getElementById('songLine');
+
+        audio.addEventListener('timeupdate', updateSongLine);
+
+        function updateSongLine() {
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            songLine.style.width = percentage + '%';
+        }
+
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = '⏸️';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = '▶️';
+            }
+        });
+
+        rewindButton.addEventListener('click', () => {
+            audio.currentTime -= 5;
+        });
+
+        forwardButton.addEventListener('click', () => {
+            audio.currentTime += 5;
+        });
+    </script>
+</body>
+</html>
